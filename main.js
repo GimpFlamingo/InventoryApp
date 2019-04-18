@@ -1,11 +1,12 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow, Menu} = require('electron')
+const { app, BrowserWindow, Menu } = require('electron')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
+let addWindow
 
-function createWindow () {
+function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 800,
@@ -14,7 +15,6 @@ function createWindow () {
       nodeIntegration: true
     }
   })
-    
 
 
   // and load the index.html of the app.
@@ -34,6 +34,25 @@ function createWindow () {
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     mainWindow = null
+  })
+}
+
+function createAddWindow() {
+  // Create the browser window.
+  addWindow = new BrowserWindow({
+    width: 400,
+    height: 600,
+    title: 'Add Inventory Item',
+    webPreferences: {
+      nodeIntegration: true
+    }
+  })
+
+  addWindow.loadFile('addWindow.html')
+
+  addWindow.on('closed', function () {
+
+    addWindow = null
   })
 }
 
@@ -64,14 +83,17 @@ const mainMenuTemplate = [
     label: 'File',
     submenu: [
       {
-        label: 'Add Item'
+        label: 'Add Item',
+        click() {
+          createAddWindow();
+        }
       },
       {
         label: 'Clear Items'
       },
       {
         label: 'Quit',
-        accelerator: process.platform == 'darwin' ? 'Command+Q' : 'Cntrl+Q',
+        accelerator: process.platform == 'darwin' ? 'Command+Q' : 'Ctrl+Q',
         click() {
           app.quit()
         }
