@@ -22,7 +22,7 @@ function createWindow () {
 
   // Build menu from template
   const mainMenu = Menu.buildFromTemplate(mainMenuTemplate)
-
+  // Insert menu
   Menu.setApplicationMenu(mainMenu)
 
   // Open the DevTools.
@@ -61,6 +61,20 @@ app.on('activate', function () {
 // Create menu template
 const mainMenuTemplate = [
   {
-    label: 'File'
+    label: 'File',
+    submenu: [
+      {
+        label: 'Add Item'
+      },
+      {
+        label: 'Clear Items'
+      },
+      {
+        label: 'Quit',
+        click() {
+          app.quit()
+        }
+      }
+    ]
   }
 ]
