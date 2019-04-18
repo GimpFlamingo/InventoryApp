@@ -18,5 +18,8 @@
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^4.1.4"
+  },
+  "dependencies": {
+    "pg-promise": "^8.6.5"
   }
 }
