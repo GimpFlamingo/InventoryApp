@@ -1,3 +1,9 @@
+/**
+ * The finished app on startup should have a home screen that presents the user with all the options
+ * that can be done on the application such as: add an item to the inventory; create and order;
+ * access sale history; access spread sheet of items; and manage contact information of sellers
+ * and buyers.
+ */
 // Modules to control application life and create native browser window
 const { app, BrowserWindow, Menu } = require('electron')
 
