@@ -95,7 +95,16 @@ const mainMenuTemplate = [
                 }
             },
             {
-                label: 'Clear Items'
+                label: 'New Vendor'
+            },
+            {
+                label: 'New Customer'
+            },
+            {
+                label: 'New Purchase Order'
+            },
+            {
+                label: 'Settings'
             },
             {
                 label: 'Quit',
@@ -103,6 +112,37 @@ const mainMenuTemplate = [
                 click() {
                     app.quit()
                 }
+            }
+        ],
+    },
+    {
+        label: 'Edit',
+        submenu: [
+            {
+                label: 'Edit Item',                
+            },
+            {
+                label: 'Edit Vendor',
+            },
+            {
+                label: 'Edit Customer'
+            },
+        ],
+    },
+    {
+        label: 'View',
+        submenu: [
+            {
+                label: 'Find Order'
+            },
+            {
+                label: 'Find Item'
+            },
+            {
+                label: 'Find Vendor'
+            },
+            {
+                label: 'Find Customer'
             }
         ]
     }
