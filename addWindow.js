@@ -3,4 +3,4 @@
  * them to the relevant coloumn of the Postgres database.
  */ 
 var pgp = require('pg-promise')
-var db = pgp('postgres://postgres:InVent329R@localhost:5432/database') // Fix this
+var db = pgp('postgres://postgres:ridgeback@localhost:5432/database') // Fix this
