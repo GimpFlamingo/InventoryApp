@@ -43,7 +43,7 @@ function createWindow() {
     })
 }
 
-function createAddWindow() {
+function createAddItemWindow() {
     // Create the browser window.
     addWindow = new BrowserWindow({
         width: 400,
@@ -54,7 +54,7 @@ function createAddWindow() {
         }
     })
 
-    addWindow.loadFile('addWindow.html')
+    addWindow.loadFile('addItemWindow.html')
 
     addWindow.on('closed', function () {
 
@@ -91,7 +91,7 @@ const mainMenuTemplate = [
             {
                 label: 'Add Item',
                 click() {
-                    createAddWindow()
+                    createAddItemWindow()
                 }
             },
             {
