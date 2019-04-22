@@ -3,7 +3,7 @@
  * them to the relevant coloumn of the Postgres database.
  */
 const pg = require('pg')
-const add = document.querySelector('add-part')
+const add = document.querySelector('#add-part')
 const connectionString = 'postgres://postgres:ridgeback@localhost:5432/InventoryApp'
 
 var client = new pg.Client(connectionString)
