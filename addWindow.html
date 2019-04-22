@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Add Inventory Part</title>
-    <script src="addItemWindow.js"></script>
+    <script src="addWindow.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
@@ -14,17 +14,20 @@
 <body>
     <form>
         <div>
-            <label>Enter Product ID</label>
+            <label>Enter Part ID</label>
             <input type="text" id="prod-id" autofocus>
-            <label>Enter Vendor ID</label>
+            <label>Enter Manufacture ID</label>
             <input type="text" id="manufact-id">
+<<<<<<< HEAD:addItemWindow.html
             <label>Enter Manufacturer Cost</label>
             <input type="number" step=".01" id="manufact-cost">
+=======
+>>>>>>> parent of 81c5dd0... Worked on database integration and changed AddWIndow to AddItemWindow:addWindow.html
             <label>Enter Item Description</label>
             <input type="text" id="description">
-            <label>Enter Item Quantity</label>
-            <input type="number" step="1" id="quantity">
-            <button type="submit" id="add-part">Add Part</button>
+            <label>Enter Manufacturer Cost</label>
+            <input type="text" id="manufact-cost">
+            <button type="submit">Add Part</button>
         </div>
     </form>
 
