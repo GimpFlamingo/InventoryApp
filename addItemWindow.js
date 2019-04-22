@@ -21,6 +21,7 @@ var date = new Date(year, monthIndex[day])
 var values = [req.query.partId, req.query.vendId, req.query.price, req.query.desc, req.query.quant, req.query.dateAdded, req.query.dateUpdated]
 
 add.onClick() = function() {
+    console.log('click')
     client.query('INSERT INTO Inventory (item_id, vend_id, item_price, item_desc, item_quantity, date_added, last_update) VALUES($1, $2, $3, $4, $5, $6, $7);',
     values, function (err, result) {
         console.log(err, result)
