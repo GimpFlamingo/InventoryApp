@@ -20,6 +20,7 @@
     "electron": "^4.1.4"
   },
   "dependencies": {
+    "pg": "^7.10.0",
     "pg-promise": "^8.6.5"
   }
 }

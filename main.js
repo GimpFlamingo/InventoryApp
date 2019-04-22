@@ -19,13 +19,12 @@ function createWindow() {
         height: 600,
         webPreferences: {
             nodeIntegration: true
-        }
+        }        
     })
 
 
     // and load the index.html of the app.
     mainWindow.loadFile('index.html')
-
     // Build menu from template
     const mainMenu = Menu.buildFromTemplate(mainMenuTemplate)
     // Insert menu
