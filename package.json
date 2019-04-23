@@ -1,21 +1,18 @@
 {
-  "name": "electron-quick-start",
+  "name": "inventory-app",
   "version": "1.0.0",
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "repository": "https://github.com/Raybird9/InventoryApp.git",
   "keywords": [
     "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
+    "start"
   ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
+  "author": "Ray Kochenderfer",
+  "license": "MIT",
   "devDependencies": {
     "electron": "^4.1.4"
   },

@@ -146,7 +146,7 @@ const mainMenuTemplate = [
                 }
             },
             {
-                label: 'New Purchase Order'
+                label: 'New Purchase Order',
             },
             {
                 label: 'Settings'
