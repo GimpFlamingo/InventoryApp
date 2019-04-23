@@ -1,8 +1,9 @@
 var pg = require('pg')
-var connectionString = 'postgresql://postgres:ridgeback@localhost:5432/InventoryApp'
-var client = new pg.Client(connectionString)
 var addButton = document.getElementById('add-part')
 
+var client = new pg.Client({
+    connectionString: 'postgresql://postgres:ridgeback@localhost:5432/InventoryApp'
+})
 client.connect()
 
 addButton.onclick = function () {

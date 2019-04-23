@@ -42,7 +42,8 @@ function createWindow() {
     })
 }
 
-function createAddWindow() {
+// Add a new part to the inventory list
+function createAddItemWindow() {
     // Create the browser window.
     addWindow = new BrowserWindow({
         width: 400,
@@ -53,7 +54,46 @@ function createAddWindow() {
         }
     })
 
-    addWindow.loadFile('addWindow.html')
+    addWindow.loadFile('fileWindows/addItemWindow.html')
+
+    addWindow.on('closed', function () {
+
+        addWindow = null
+    })
+}
+
+// Add a new vendor to the database
+function createNewVendWindow() {
+    // Create the browser window.
+    addWindow = new BrowserWindow({
+        width: 400,
+        height: 600,
+        title: 'Add Inventory Item',
+        webPreferences: {
+            nodeIntegration: true
+        }
+    })
+
+    addWindow.loadFile('fileWindows/addVendWindow.html')
+
+    addWindow.on('closed', function () {
+
+        addWindow = null
+    })
+}
+
+function createNewCustomerWindow() {
+    // Create the browser window.
+    addWindow = new BrowserWindow({
+        width: 400,
+        height: 600,
+        title: 'Add Inventory Item',
+        webPreferences: {
+            nodeIntegration: true
+        }
+    })
+
+    addWindow.loadFile('fileWindows/addNewCustomerWindow.html')
 
     addWindow.on('closed', function () {
 
@@ -90,14 +130,20 @@ const mainMenuTemplate = [
             {
                 label: 'Add Item',
                 click() {
-                    createAddWindow()
+                    createAddItemWindow()
                 }
             },
             {
-                label: 'New Vendor'
+                label: 'New Vendor',
+                click() {
+                    createNewVendWindow()
+                }
             },
             {
-                label: 'New Customer'
+                label: 'New Customer',
+                click() {
+                    createNewCustomerWindow()
+                }
             },
             {
                 label: 'New Purchase Order'
@@ -142,6 +188,28 @@ const mainMenuTemplate = [
             },
             {
                 label: 'Find Customer'
+            }
+        ]
+    },
+    {
+        label: 'Generate',
+        submenu: [
+            {
+                label: "New Purchase Order"
+            },
+            {
+                label: "Sales Report",
+                submenu: [
+                    {
+                        label: 'YTD Sales'
+                    },
+                    {
+                        label: 'Monthly Sales'
+                    },
+                    {
+                        label: 'By Customer Sales'
+                    }
+                ]
             }
         ]
     }
