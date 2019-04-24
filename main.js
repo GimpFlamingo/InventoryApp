@@ -19,7 +19,7 @@ function createWindow() {
         height: 600,
         webPreferences: {
             nodeIntegration: true
-        }        
+        }
     })
 
 
@@ -43,7 +43,7 @@ function createWindow() {
 }
 
 // Add a new part to the inventory list
-function createAddItemWindow() {
+function addItemWindow() {
     // Create the browser window.
     addWindow = new BrowserWindow({
         width: 400,
@@ -56,6 +56,7 @@ function createAddItemWindow() {
 
     addWindow.loadFile('fileWindows/addItemWindow.html')
 
+
     addWindow.on('closed', function () {
 
         addWindow = null
@@ -63,7 +64,7 @@ function createAddItemWindow() {
 }
 
 // Add a new vendor to the database
-function createNewVendWindow() {
+function newVendWindow() {
     // Create the browser window.
     addWindow = new BrowserWindow({
         width: 400,
@@ -82,7 +83,7 @@ function createNewVendWindow() {
     })
 }
 
-function createNewCustomerWindow() {
+function newCustomerWindow() {
     // Create the browser window.
     addWindow = new BrowserWindow({
         width: 400,
@@ -130,19 +131,19 @@ const mainMenuTemplate = [
             {
                 label: 'Add Item',
                 click() {
-                    createAddItemWindow()
+                    addItemWindow()
                 }
             },
             {
                 label: 'New Vendor',
                 click() {
-                    createNewVendWindow()
+                    newVendWindow()
                 }
             },
             {
                 label: 'New Customer',
                 click() {
-                    createNewCustomerWindow()
+                    newCustomerWindow()
                 }
             },
             {
@@ -164,7 +165,7 @@ const mainMenuTemplate = [
         label: 'Edit',
         submenu: [
             {
-                label: 'Edit Item',                
+                label: 'Edit Item',
             },
             {
                 label: 'Edit Vendor',
@@ -229,7 +230,7 @@ if (process.env.NODE_ENV !== 'production') {
                 label: 'Toggle Devtools',
                 accelerator: process.platform == 'darwin' ? 'Command+I' : 'Ctrl+I',
                 click(item, focusWindow) {
-                    mainWindow.webContents.openDevTools()
+                    focusWindow.webContents.openDevTools()
                 }
             },
             {
