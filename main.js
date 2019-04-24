@@ -15,8 +15,8 @@ let addWindow
 function createWindow() {
     // Create the browser window.
     mainWindow = new BrowserWindow({
-        width: 800,
-        height: 600,
+        width: 1000,
+        height: 800,
         webPreferences: {
             nodeIntegration: true
         }
@@ -67,8 +67,8 @@ function addItemWindow() {
 function newVendWindow() {
     // Create the browser window.
     addWindow = new BrowserWindow({
-        width: 400,
-        height: 600,
+        width: 800,
+        height: 1000,
         title: 'Add Inventory Item',
         webPreferences: {
             nodeIntegration: true
@@ -147,7 +147,7 @@ const mainMenuTemplate = [
                 }
             },
             {
-                label: 'New Purchase Order',
+                label: 'New Sales Order',
             },
             {
                 label: 'Settings'
@@ -185,10 +185,10 @@ const mainMenuTemplate = [
                 label: 'Find Item'
             },
             {
-                label: 'Find Vendor'
+                label: 'Find Vendor Information'
             },
             {
-                label: 'Find Customer'
+                label: 'Find Customer Information'
             }
         ]
     },

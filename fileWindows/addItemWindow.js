@@ -8,12 +8,13 @@ window.onload = function () {
     client.connect()
 
     addButton.onclick = function () {
+        // Add functionality that if there is an error it doesn't clear the form
         console.log('Click!')
-        var partId = document.getElementById('prod-id')
-        var vendId = document.getElementById('manufact-id')
-        var price = document.getElementById('manufact-cost')
-        var desc = document.getElementById('description')
-        var quant = document.getElementById('quantity')
+        var partId = document.getElementById('partIdInput')
+        var vendId = document.getElementById('vendorIdInput')
+        var price = document.getElementById('manuCostInput')
+        var desc = document.getElementById('itemDescInput')
+        var quant = document.getElementById('quantityInput')
         var values = [partId.value, vendId.value, price.value, desc.value, quant.value]        
         client.query('INSERT INTO public.inventory (item_id, vend_id, item_price, item_desc, item_quantity) VALUES ($1, $2, $3, $4, $5);', values, (err, res) => {
             console.log(err, res)

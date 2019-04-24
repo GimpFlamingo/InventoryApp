@@ -14,20 +14,29 @@
 
 <body>
 
-    <div>
-        <label>Enter Part ID</label>
-        <input type="text" id="prod-id" autofocus>
-        <label>Enter Vendor ID</label>
-        <input type="text" id="manufact-id">
-        <label>Enter Manufacturer Cost</label>
-        <input type="number" step="0.01" id="manufact-cost">
-        <label>Enter Item Description</label>
-        <input type="text" id="description">
-        <label>Enter Item Quantitiy</label>
-        <input type="text" id="quantity">
-        <button type="submit" id="add-part">Add Part</button>
-    </div>
-
+    <form class="m-2">
+        <div class="form-group">
+            <label for="partIdInput">Part ID</label>
+            <input type="text" class="form-control" id="partIdInput" placeholder="Enter Part ID">
+        </div>
+        <div class="form-group">
+            <label for="vendorIdInput">Vendor ID</label>
+            <input type="text" class="form-control" id="vendorIdInput" placeholder="Enter Vendor ID">
+        </div>
+        <div class="form-group">
+            <label for="manuCostInput">Manufacturer Cost</label>
+            <input type="number" class="form-control" step="0.01" id="manuCostInput" placeholder="Enter Manufacturer Cost">
+        </div>
+        <div class="form-group">
+            <label for="itemDescInput">Enter Item Description</label>
+            <input type="text" class="form-control" id="itemDescInput" placeholder="Enter Item Description">
+        </div>
+        <div class="form-group">
+            <label for="quantityInput">Enter Item Quantity</label>
+            <input type="text" class="form-control" id="quantityInput" placeholder="Enter Item Quantity">
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg btn-block" id="add-part">Enter</button>
+    </form>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

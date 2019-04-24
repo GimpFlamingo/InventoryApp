@@ -6,11 +6,21 @@
     <title>Inventory App</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="indexManager.js"></script>
+    <style>
+    </style>
 </head>
 
 <body>
-    <div class="container-fluid">
-        <h1>Inventory Manager</h1>
+    <div class="container-fluid m-1">
+        <h1 class="">Inventory Manager</h1>
+        <div class="container d-flex justify-content-center align-items-center">
+            <!--Buttons that are shortcuts to the most used functions of the system-->
+            <button type="button" class="btn btn-secondary m-1" id="new-sale">Create New Sales Order</button>
+            <button type="button" class="btn btn-secondary m-1" id="find-sale">Find Sales Order</button>
+            <button type="button" class="btn btn-secondary m-1" id="find-cust">Price Check</button>
+
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
