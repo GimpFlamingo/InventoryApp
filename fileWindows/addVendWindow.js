@@ -1,13 +1,13 @@
 const { Client } = require('pg')
 const connectionString = 'postgresql://postgres:ridgeback@localhost:5432/inventoryapp'
 window.onload = function () {
-    const addVend = document.getElementById('add-vend')
+    const addButton = document.getElementById('add-vend')
 
     const client = new Client(connectionString)
 
     client.connect()
 
-    addVend.onclick = function () {
+    addButton.onclick = function () {
         // Add functionality that if there is an error it doesn't clear the form
         console.log('Click!')
         var vendId = document.getElementById('vendIdInput')
