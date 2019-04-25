@@ -9,7 +9,6 @@ window.onload = function () {
 
     addButton.onclick = function () {
         // Add functionality that if there is an error it doesn't clear the form
-        console.log('Click!')
         var vendId = document.getElementById('vendIdInput')
         var vendName = document.getElementById('vendorNameInput')
         var vendAddress = document.getElementById('vendorAddressInput')
