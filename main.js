@@ -86,15 +86,33 @@ function newVendWindow() {
 function newCustomerWindow() {
     // Create the browser window.
     addWindow = new BrowserWindow({
-        width: 400,
-        height: 600,
+        width: 900,
+        height: 1100,
         title: 'Add Inventory Item',
         webPreferences: {
             nodeIntegration: true
         }
     })
 
-    addWindow.loadFile('fileWindows/addNewCustomerWindow.html')
+    addWindow.loadFile('fileWindows/addNewCustomer.html')
+
+    addWindow.on('closed', function () {
+
+        addWindow = null
+    })
+}
+
+function editItemWindow() {
+    addWindow = new BrowserWindow({
+        width: 900,
+        height: 1100,
+        title: 'Edit Inventory Item',
+        webPreferences: {
+            nodeIntegration: true
+        }
+    })
+
+    addWindow.loadFile('editWindows/editItemWindow.html')
 
     addWindow.on('closed', function () {
 
@@ -166,6 +184,9 @@ const mainMenuTemplate = [
         submenu: [
             {
                 label: 'Edit Item',
+                click() {
+                    editItemWindow()
+                }
             },
             {
                 label: 'Edit Vendor',
