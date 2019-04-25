@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,12 +9,17 @@
     <script src="editItemWindow.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <style>
-            #display-part {
-                display: none;
-            }            
-        </style>
+    <style>
+        #display-part {
+            display: none;
+        }
+
+        #edit-part-menu {
+            display: none;
+        }
+    </style>
 </head>
+
 <body>
     <div>
         <h1>Edit Inventory Item</h1>
@@ -29,16 +35,22 @@
                             <label for="part-id">Part ID</label>
                             <input type="text" class="form-control" id="part-id" placeholder="Enter Part ID">
                         </div>
-                        <button type="button" class="btn btn-primary btn-lg, btn-block" id="search-part">Search</button>                           
+                        <button type="button" class="btn btn-primary btn-lg, btn-block" id="search-part">Search</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container-fluid" id="display-part"> 
+    <div class="container-fluid" id="display-part">
         <div id="part"></div>
+        <button type="button" class="btn btn-primary" id="edit-part">Edit Part</button>
+    </div>    
+    <div id="edit-part-menu">
+        <div id="edit-menu"></div>
+        <button type="button" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-secondary">Cancel</button>
     </div>
-    
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -49,4 +61,5 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 </body>
+
 </html>

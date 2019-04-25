@@ -5,16 +5,18 @@ window.onload = function () {
     // User only has to enter one of the following variables to search the database
     // The Part ID will hold priority over the part name
     const searchButton = document.getElementById('search-part')
+    const editItemButton = document.getElementById('edit-part')
 
     const client = new Client(connectionString)
 
     client.connect()
 
     var partID = document.getElementById('part-id')
-    var partName = document.getElementById('part-name')
     var enterPartSection = document.getElementById('id-finder')
     var displayPartSection = document.getElementById('display-part')
+    var editPartSection = document.getElementById('edit-part-menu')
     var vals = []
+
     searchButton.onclick = function () {
         // Add functionality that if part is not in database it shows error that part-id or part 
         // name is invalid. Make sure modal is hidden after a valid id/name is entered
@@ -34,6 +36,7 @@ window.onload = function () {
                     } else {
                         var partElement = document.querySelector('#part')
                         var temp = ''
+                        vals = [res.rows[0].item_id, res.rows[0].vend_id, res.rows[0].item_price, res.rows[0].item_desc, res.rows[0].item_quantity, res.rows[0].date_added, res.rows[0].last_update]
 
                         temp += '<table class="table-responsive table-bordered" id="table">'
                         temp += '<thead>'
@@ -43,31 +46,66 @@ window.onload = function () {
                         temp += '<th scope ="col" style="padding: 12px;"">Company Price</th>'
                         temp += '<th scope ="col" style="padding: 12px;"">Item Description</th>'
                         temp += '<th scope ="col" style="padding: 12px;">Quantity in Stock</th>'
-                        temp += '<th scope ="col" style="padding: 12px;">Date Added/th>'
+                        temp += '<th scope ="col" style="padding: 12px;">Date Added</th>'
                         temp += '<th scope ="col" style="padding: 12px;">Date Last Updated</th>'
                         temp += '</tr>'
                         temp += '</thead>'
                         temp += '<tbody>'
                         temp += '<tr>'
-                        temp += '<th scope="row">' + res.rows[0].item_id + '</th>'
-                        temp += '<td>' + res.rows[0].vend_id + '</td>'
-                        temp += '<td>' + res.rows[0].item_price + '</td>'
-                        temp += '<td>' + res.rows[0].item_desc + '</td>'
-                        temp += '<td>' + res.rows[0].item_quantity + '</td>'
-                        temp += '<td>' + res.rows[0].date_added + '</td>'
-                        temp += '<td>' + res.rows[0].last_update + '</td>'
+                        temp += '<th scope="row">' + vals[0] + '</th>'
+                        temp += '<td>' + vals[1] + '</td>'
+                        temp += '<td>' + vals[2] + '</td>'
+                        temp += '<td>' + vals[3] + '</td>'
+                        temp += '<td>' + vals[4] + '</td>'
+                        temp += '<td>' + vals[5] + '</td>'
+                        temp += '<td>' + vals[6] + '</td>'
                         temp += '</tr>'
                         temp += '</tbody>'
                         temp += '</table>'
                         partElement.innerHTML = temp
                         enterPartSection.style.display = 'none'
                         displayPartSection.style.display = 'block'
+
                     }
                 }
             })
         }
     }
-    // Add button to allow the user to edit the information
+
+    // Allows the user to edit the information of a part in the database
+    editItemButton.onclick = function () {
+        var editElement = document.querySelector('#edit-menu')
+        var temp = ''
+        console.log('Click!')
+        temp += '<table class="table-responsive table-bordered" id="table">'
+        temp += '<thead>'
+        temp += '<tr>'
+        temp += '<th scope ="col" style="padding: 12px;">' + vals[0] + '</th>'
+        temp += '<th scope ="col" style="padding: 12px;">' + vals[1] + '</th>'
+        temp += '<th scope ="col" style="padding: 12px;">' + vals[2] + '</th>'
+        temp += '<th scope ="col" style="padding: 12px;">' + vals[3] + '</th>'
+        temp += '<th scope ="col" style="padding: 12px;">' + vals[4] + '</th>'
+        temp += '<th scope ="col" style="padding: 12px;">' + vals[5] + '</th>'
+        temp += '<th scope ="col" style="padding: 12px;">' + vals[6] + '</th>'
+        temp += '</tr>'
+        temp += '</thead>'
+        temp += '<tbody>'
+        temp += '<tr>'
+        temp += '<th scope="row"><input type="text" class="form-control" placeholder="' + vals[0] + '"</th>'
+        temp += '<td><input type="text" class="form-control" placeholder="' + vals[1] + '"</td>'
+        temp += '<td><input type="text" class="form-control" placeholder="' + vals[2] + '"</td>'
+        temp += '<td><input type="text" class="form-control" placeholder="' + vals[3] + '"</td>'
+        temp += '<td><input type="text" class="form-control" placeholder="' + vals[4] + '"</td>'
+        temp += '<td><input type="text" class="form-control" placeholder="' + vals[5] + '"</td>'
+        temp += '<td><input type="text" class="form-control" placeholder="' + vals[6] + '"</td>'
+        temp += '</tr>'
+        temp += '</tbody>'
+        temp += '</table>'
+
+        editElement.innerHTML = temp
+        displayPartSection.style.display = 'none'
+        editPartSection.style.display = 'block'
+    }
 
     // Add button to allow the user to save the information to the databse
 
