@@ -19,8 +19,15 @@ window.onload = function () {
         var values = [vendId.value, vendName.value, vendAddress.value, vendCity.value, vendState.value, vendZip.value,  vendCountry.value]        
         client.query('INSERT INTO public.vendors (vend_id, vend_name, vend_address, vend_city, vend_state, vend_zip, vend_country) VALUES ($1, $2, $3, $4, $5, $6, $7);', values, (err, res) => {
             console.log(err, res)
-            client.end()
+            if (err !== null) {
+                window.alert("Invalid input. Make sure the fields are filled in correctly.")
+            } else {
+                document.location.reload()
+            }
         })
 
+    }
+    window.onbeforeunload = function () {
+        client.end()
     }
 }
