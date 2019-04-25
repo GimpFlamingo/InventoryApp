@@ -6,6 +6,8 @@ window.onload = function () {
     // The Part ID will hold priority over the part name
     const searchButton = document.getElementById('search-part')
     const editItemButton = document.getElementById('edit-part')
+    const savePart = document.getElementById('save-part')
+    const cancel = document.getElementById('cancel')
 
     const client = new Client(connectionString)
 
@@ -107,12 +109,17 @@ window.onload = function () {
         editPartSection.style.display = 'block'
     }
 
-    // Add button to allow the user to save the information to the databse
-
-    // Add button to allow the user to exit out of editing without saving to databse
-
-    // Add button to repoen modal and query another part
-
+    // Saves the user's changes to the database
+    savePart.onclick = function () {
+        // Get the user's input. If the user doesn't change the field make sure to leave the current values in there
+        
+        // Query the database to update the values
+        // On error use an alert to let the user know that they need to enter a valid item
+    }
+    // Reloads the document without saving the changes to the database
+    cancel.onclick = function () {
+        document.location.reload()
+    }
 
     window.onbeforeunload = function () {
         client.end()
