@@ -12,24 +12,72 @@ window.onload = function () {
 
     var partID = document.getElementById('part-id')
     var partName = document.getElementById('part-name')
-    var modal = document.getElementById('id-finder')
-    var display = document.getElementById('display-part')
-
+    var enterPartSection = document.getElementById('id-finder')
+    var displayPartSection = document.getElementById('display-part')
+    var vals = []
     searchButton.onclick = function () {
         // Add functionality that if part is not in database it shows error that part-id or part 
         // name is invalid. Make sure modal is hidden after a valid id/name is entered
 
-        // If a valid input is given hide the modal and display the querry results
+        // If a valid input is given hide the modal and display the query results
         if (partID.value === "") {
             window.alert("Please enter a valid PartID")
         } else {
-            var partElement = document.querySelector('#part')
-            var sql = 'SELECT * FROM public.inventory WHERE item_id = ' + partID.value + ';'
-            var values = []
+            var sql = 'SELECT * FROM public.inventory WHERE item_id = \'' + partID.value + '\';'
             client.query(sql, (err, res) => {
-                
+                console.log(err, res)
+                if (err !== null) {
+                    window.alert("Invalid Part ID")
+                } else {
+                    if (res.rows.length === 0) {
+                        window.alert("This Part does not exist")
+                    } else {
+                        var partElement = document.querySelector('#part')
+                        var temp = ''
+
+                        temp += '<table class="table">'
+                        temp += '<thead>'
+                        temp += '<tr>'
+                        temp += '<th scope ="col">Part ID</th>'
+                        temp += '<th scope ="col">Vend ID</th>'
+                        temp += '<th scope ="col">Company Price</th>'
+                        temp += '<th scope ="col">Item Description</th>'
+                        temp += '<th scope ="col">Quantity in Stock</th>'
+                        temp += '<th scope ="col">Date Added/th>'
+                        temp += '<th scope ="col">Date Last Updated</th>'
+                        temp += '</tr>'
+                        temp += '</thead>'
+                        temp += '<tbody>'
+                        temp += '<tr>'
+                        temp += '<th scope="row">' + res.rows[0].item_id + '</th>'
+                        temp += '<td>' + res.rows[0].vend_id + '</td>'
+                        temp += '<td>' + res.rows[0].item_price + '</td>'
+                        temp += '<td>' + res.rows[0].item_desc + '</td>'
+                        temp += '<td>' + res.rows[0].item_quantity + '</td>'
+                        temp += '<td>' + res.rows[0].date_added + '</td>'
+                        temp += '<td>' + res.rows[0].last_update + '</td>'
+                        temp += '</tr>'
+                        temp += '</tbody>'
+                        temp += '</table>'
+                        partElement.innerHTML = temp
+                        enterPartSection.style.display = 'none'
+                        displayPartSection.style.display = 'block'
+                    }
+                }
             })
         }
+    }
+    // Add button to allow the user to edit the information
 
-    }    
+    // Add button to allow the user to save the information to the databse
+
+    // Add button to allow the user to exit out of editing without saving to databse
+
+    // Add button to repoen modal and query another part
+
+
+    window.onbeforeunload = function () {
+        client.end()
+    }
 }
+
