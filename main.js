@@ -19,8 +19,11 @@ function createWindow() {
         height: 800,
         webPreferences: {
             nodeIntegration: true
-        }
+        },
+        show: false
     })
+
+    mainWindow.maximize()
 
 
     // and load the index.html of the app.
@@ -30,8 +33,9 @@ function createWindow() {
     // Insert menu
     Menu.setApplicationMenu(mainMenu)
 
-    // Open the DevTools.
-    // mainWindow.webContents.openDevTools()
+    mainWindow.once('ready-to-show', () => {
+        mainWindow.show()
+    })
 
     // Emitted when the window is closed.
     mainWindow.on('closed', function () {
@@ -46,16 +50,22 @@ function createWindow() {
 function addItemWindow() {
     // Create the browser window.
     addWindow = new BrowserWindow({
-        width: 400,
+        parent: mainWindow,
+        modal: true,
+        width: 500,
         height: 600,
         title: 'Add Inventory Item',
         webPreferences: {
             nodeIntegration: true
-        }
+        },
+        show: false
     })
 
     addWindow.loadFile('fileWindows/addItemWindow.html')
 
+    addWindow.once('ready-to-show', () => {
+        addWindow.show()
+    })
 
     addWindow.on('closed', function () {
 
@@ -67,6 +77,8 @@ function addItemWindow() {
 function newVendWindow() {
     // Create the browser window.
     addWindow = new BrowserWindow({
+        parent: mainWindow,
+        modal: true,
         width: 800,
         height: 1000,
         title: 'Add Inventory Item',
@@ -77,6 +89,10 @@ function newVendWindow() {
 
     addWindow.loadFile('fileWindows/addVendWindow.html')
 
+    addWindow.once('ready-to-show', () => {
+        addWindow.show()
+    })
+
     addWindow.on('closed', function () {
 
         addWindow = null
@@ -86,6 +102,8 @@ function newVendWindow() {
 function newCustomerWindow() {
     // Create the browser window.
     addWindow = new BrowserWindow({
+        parent: mainWindow,
+        modal: true,
         width: 900,
         height: 1100,
         title: 'Add Inventory Item',
@@ -95,6 +113,10 @@ function newCustomerWindow() {
     })
 
     addWindow.loadFile('fileWindows/addNewCustomer.html')
+
+    addWindow.once('ready-to-show', () => {
+        addWindow.show()
+    })
 
     addWindow.on('closed', function () {
 
@@ -109,10 +131,16 @@ function editItemWindow() {
         title: 'Edit Inventory Item',
         webPreferences: {
             nodeIntegration: true
-        }
+        },  
+        show: false
     })
+    addWindow.maximize()
 
     addWindow.loadFile('editWindows/editItemWindow.html')
+
+    addWindow.once('ready-to-show', () => {
+        addWindow.show()
+    })
 
     addWindow.on('closed', function () {
 

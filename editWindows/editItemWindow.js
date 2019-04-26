@@ -38,8 +38,9 @@ window.onload = function () {
                     } else {
                         var partElement = document.querySelector('#part')
                         var temp = ''
+                        // Make sure to try and reformate the date from the database to be YYYY/MM/DD
                         vals = [res.rows[0].item_id, res.rows[0].vend_id, res.rows[0].item_price, res.rows[0].item_desc, res.rows[0].item_quantity, res.rows[0].date_added, res.rows[0].last_update]
-
+                        
                         temp += '<table class="table-responsive table-bordered" id="table">'
                         temp += '<thead>'
                         temp += '<tr>'
@@ -94,12 +95,12 @@ window.onload = function () {
         temp += '<tbody>'
         temp += '<tr>'
         temp += '<th scope="row"><input type="text" class="form-control" placeholder="' + vals[0] + '"</th>'
-        temp += '<td><input type="text" class="form-control" placeholder="' + vals[1] + '"</td>'
-        temp += '<td><input type="text" class="form-control" placeholder="' + vals[2] + '"</td>'
-        temp += '<td><input type="text" class="form-control" placeholder="' + vals[3] + '"</td>'
-        temp += '<td><input type="text" class="form-control" placeholder="' + vals[4] + '"</td>'
-        temp += '<td><input type="text" class="form-control" placeholder="' + vals[5] + '"</td>'
-        temp += '<td><input type="text" class="form-control" placeholder="' + vals[6] + '"</td>'
+        temp += '<td><input type="text" class="form-control" placeholder="' + vals[1] + '"></td>'
+        temp += '<td><input type="text" class="form-control" placeholder="' + vals[2] + '"></td>'
+        temp += '<td><input type="text" class="form-control" placeholder="' + vals[3] + '"></td>'
+        temp += '<td><input type="text" class="form-control" placeholder="' + vals[4] + '"></td>'
+        temp += '<td><input type="text" class="form-control" placeholder="' + vals[5] + '"></td>'
+        temp += '<td><input type="text" class="form-control" placeholder="' + vals[6] + '"></td>'
         temp += '</tr>'
         temp += '</tbody>'
         temp += '</table>'
@@ -112,7 +113,7 @@ window.onload = function () {
     // Saves the user's changes to the database
     savePart.onclick = function () {
         // Get the user's input. If the user doesn't change the field make sure to leave the current values in there
-        
+
         // Query the database to update the values
         // On error use an alert to let the user know that they need to enter a valid item
     }
@@ -125,4 +126,3 @@ window.onload = function () {
         client.end()
     }
 }
-
