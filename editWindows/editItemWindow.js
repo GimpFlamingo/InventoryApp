@@ -37,7 +37,7 @@ window.onload = function () {
                         window.alert("This Part does not exist")
                     } else {
                         var partElement = document.querySelector('#part')
-                        var temp = ''
+                        let temp = ''
                         // Make sure to try and reformate the date from the database to be YYYY/MM/DD
                         vals = [res.rows[0].item_id, res.rows[0].vend_id, res.rows[0].item_price, res.rows[0].item_desc, res.rows[0].item_quantity, res.rows[0].date_added, res.rows[0].last_update]
                         
@@ -78,12 +78,12 @@ window.onload = function () {
     // Allows the user to edit the information of a part in the database
     editItemButton.onclick = function () {
         var editElement = document.querySelector('#edit-menu')
-        var temp = ''
+        let temp = ''
         console.log('Click!')
         temp += '<table class="table-responsive table-bordered" id="table">'
         temp += '<thead>'
         temp += '<tr>'
-        temp += '<th scope ="col" style="padding: 12px;">' + vals[0] + '</th>'
+        temp += '<th id="current-id" scope ="col" style="padding: 12px;">' + vals[0] + '</th>'
         temp += '<th scope ="col" style="padding: 12px;">' + vals[1] + '</th>'
         temp += '<th scope ="col" style="padding: 12px;">' + vals[2] + '</th>'
         temp += '<th scope ="col" style="padding: 12px;">' + vals[3] + '</th>'
@@ -94,13 +94,11 @@ window.onload = function () {
         temp += '</thead>'
         temp += '<tbody>'
         temp += '<tr>'
-        temp += '<th scope="row"><input type="text" class="form-control" placeholder="' + vals[0] + '"</th>'
-        temp += '<td><input type="text" class="form-control" placeholder="' + vals[1] + '"></td>'
-        temp += '<td><input type="text" class="form-control" placeholder="' + vals[2] + '"></td>'
-        temp += '<td><input type="text" class="form-control" placeholder="' + vals[3] + '"></td>'
-        temp += '<td><input type="text" class="form-control" placeholder="' + vals[4] + '"></td>'
-        temp += '<td><input type="text" class="form-control" placeholder="' + vals[5] + '"></td>'
-        temp += '<td><input type="text" class="form-control" placeholder="' + vals[6] + '"></td>'
+        temp += '<th scope="row"><input type="text" class="form-control" id="new-id" placeholder="' + vals[0] + '"</th>'
+        temp += '<td><input type="text" class="form-control"  id="new-vend-id" placeholder="' + vals[1] + '"></td>'
+        temp += '<td><input type="number" step="0.01" class="form-control"  id="new-price" placeholder="' + vals[2] + '"></td>'
+        temp += '<td><input type="text" class="form-control"  id="new-desc" placeholder="' + vals[3] + '"></td>'
+        temp += '<td><input type="number" step="1" class="form-control"  id="new-quan" placeholder="' + vals[4] + '"></td>'
         temp += '</tr>'
         temp += '</tbody>'
         temp += '</table>'
@@ -113,7 +111,16 @@ window.onload = function () {
     // Saves the user's changes to the database
     savePart.onclick = function () {
         // Get the user's input. If the user doesn't change the field make sure to leave the current values in there
+        let oldId = docuemnt.getElementById('current-id')
+        let newPartId = document.getElementById('new-id')
+        let newVend = document.getElementById('new-vend-id')
+        let newPrice = document.getElementById('new-price')
+        let newDesc = document.getElementById('new-desc')
+        let newQuan = document.getElementById('new-quan')
 
+        // This is the general sql statement if all fields are filled. Need to write it so that unfilled fields are allowed
+        var sql = 'UPDATE public.inventory SET item_id = \'' + newPartId + '\', vend_id = \'' + newVend + '\', item_price = \'' + newPrice + '\', item_desc = \'' + newDesc + 
+                '\', item_quantity = \'' + newQuan + '\', last_update = CURRENT_DATE WHERE item_id = \'' + oldId + '\';'
         // Query the database to update the values
         // On error use an alert to let the user know that they need to enter a valid item
     }
