@@ -111,16 +111,41 @@ window.onload = function () {
     // Saves the user's changes to the database
     savePart.onclick = function () {
         // Get the user's input. If the user doesn't change the field make sure to leave the current values in there
-        let oldId = docuemnt.getElementById('current-id')
+        console.log('Click!')
+        let oldId = document.getElementById('current-id')
         let newPartId = document.getElementById('new-id')
         let newVend = document.getElementById('new-vend-id')
         let newPrice = document.getElementById('new-price')
         let newDesc = document.getElementById('new-desc')
         let newQuan = document.getElementById('new-quan')
+        var sql = 'UPDATE public.inventory SET '
 
-        // This is the general sql statement if all fields are filled. Need to write it so that unfilled fields are allowed
-        var sql = 'UPDATE public.inventory SET item_id = \'' + newPartId + '\', vend_id = \'' + newVend + '\', item_price = \'' + newPrice + '\', item_desc = \'' + newDesc + 
-                '\', item_quantity = \'' + newQuan + '\', last_update = CURRENT_DATE WHERE item_id = \'' + oldId + '\';'
+        if (newPartId.value !== "") {
+            sql += 'item_id = \'' + newPartId.value + '\','
+        }
+        if (newVend.value !== "") {
+            sql += 'vend_id = \'' + newVend.value + '\','
+        }
+        if (newPrice.value !== "") {
+            sql += 'item_price = \'' + newPrice.value + '\','
+        }
+        if (newDesc.value !== "") {
+            sql += 'item_desc = \'' + newDesc.value + '\','
+        }
+        if (newQuan.value !== "") {
+            sql += 'item_desc = \'' + newQuan.value + '\','
+        }
+        sql += ' last_update = CURRENT_DATE WHERE item_id = \'' + oldId.value + '\';'
+
+        // Query is not actually updating the database
+        client.query(sql, (err, res) => {
+            console.log(err, res)
+            if (err === null) {                
+                window.alert('Your changes have been saved!')
+            } else {
+                window.alert('There was an error updating the part.')
+            }
+        })
         // Query the database to update the values
         // On error use an alert to let the user know that they need to enter a valid item
     }
