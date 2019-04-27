@@ -148,6 +148,30 @@ function editItemWindow() {
     })
 }
 
+function editCustomerWindow() {
+    addWindow = new BrowserWindow({
+        width: 900,
+        height: 1100,
+        title: 'Edit Inventory Item',
+        webPreferences: {
+            nodeIntegration: true
+        },  
+        show: false
+    })
+    addWindow.maximize()
+
+    addWindow.loadFile('editWindows/editCustomerWindow.html')
+
+    addWindow.once('ready-to-show', () => {
+        addWindow.show()
+    })
+
+    addWindow.on('closed', function () {
+
+        addWindow = null
+    })
+}
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
@@ -220,7 +244,10 @@ const mainMenuTemplate = [
                 label: 'Edit Vendor',
             },
             {
-                label: 'Edit Customer'
+                label: 'Edit Customer',
+                click() {
+                    editCustomerWindow()
+                }
             },
         ],
     },
