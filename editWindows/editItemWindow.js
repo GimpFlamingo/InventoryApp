@@ -38,9 +38,10 @@ window.onload = function () {
                     } else {
                         var partElement = document.querySelector('#part')
                         let temp = ''
-                        // Make sure to try and reformate the date from the database to be YYYY/MM/DD
+                        // Make sure to try and reformate the date from the database to be YYYY/MM/DD                    
+
                         vals = [res.rows[0].item_id, res.rows[0].vend_id, res.rows[0].item_price, res.rows[0].item_desc, res.rows[0].item_quantity, res.rows[0].date_added, res.rows[0].last_update]
-                        
+
                         temp += '<table class="table-responsive table-bordered" id="table">'
                         temp += '<thead>'
                         temp += '<tr>'
@@ -94,7 +95,7 @@ window.onload = function () {
         temp += '</thead>'
         temp += '<tbody>'
         temp += '<tr>'
-        temp += '<th scope="row"><input type="text" class="form-control" id="new-id" placeholder="' + vals[0] + '"</th>'
+        temp += '<th scope ="col" style="padding: 12px;">' + vals[0] + '</th>'
         temp += '<td><input type="text" class="form-control"  id="new-vend-id" placeholder="' + vals[1] + '"></td>'
         temp += '<td><input type="number" step="0.01" class="form-control"  id="new-price" placeholder="' + vals[2] + '"></td>'
         temp += '<td><input type="text" class="form-control"  id="new-desc" placeholder="' + vals[3] + '"></td>'
@@ -106,48 +107,44 @@ window.onload = function () {
         editElement.innerHTML = temp
         displayPartSection.style.display = 'none'
         editPartSection.style.display = 'block'
+
     }
 
     // Saves the user's changes to the database
     savePart.onclick = function () {
         // Get the user's input. If the user doesn't change the field make sure to leave the current values in there
-        console.log('Click!')
-        let oldId = document.getElementById('current-id')
-        let newPartId = document.getElementById('new-id')
-        let newVend = document.getElementById('new-vend-id')
-        let newPrice = document.getElementById('new-price')
-        let newDesc = document.getElementById('new-desc')
-        let newQuan = document.getElementById('new-quan')
+        var newVend = document.getElementById('new-vend-id')
+        var newPrice = document.getElementById('new-price')
+        var newDesc = document.getElementById('new-desc')
+        var newQuan = document.getElementById('new-quan')
+        var newVals = [vals[0], newVend.value, newPrice.value, newDesc.value, newQuan.value]
+        console.log(newVals)
+
         var sql = 'UPDATE public.inventory SET '
 
-        if (newPartId.value !== "") {
-            sql += 'item_id = \'' + newPartId.value + '\','
-        }
-        if (newVend.value !== "") {
+        if (newVals[1] !== "") {
             sql += 'vend_id = \'' + newVend.value + '\','
         }
-        if (newPrice.value !== "") {
+        if (newVals[2] !== "") {
             sql += 'item_price = \'' + newPrice.value + '\','
         }
-        if (newDesc.value !== "") {
+        if (newVals[3] !== "") {
             sql += 'item_desc = \'' + newDesc.value + '\','
         }
-        if (newQuan.value !== "") {
-            sql += 'item_desc = \'' + newQuan.value + '\','
+        if (newVals[4] !== "") {
+            sql += 'item_quantity = ' + newQuan.value + ','
         }
-        sql += ' last_update = CURRENT_DATE WHERE item_id = \'' + oldId.value + '\';'
-
-        // Query is not actually updating the database
+        sql += ' last_update = CURRENT_DATE WHERE item_id = \'' + newVals[0] + '\';'
+        // Query the database to update the values
         client.query(sql, (err, res) => {
             console.log(err, res)
-            if (err === null) {                
+            // On error use an alert to let the user know that they need to enter a valid item
+            if (err === null) {
                 window.alert('Your changes have been saved!')
             } else {
                 window.alert('There was an error updating the part.')
             }
-        })
-        // Query the database to update the values
-        // On error use an alert to let the user know that they need to enter a valid item
+        })       
     }
     // Reloads the document without saving the changes to the database
     cancel.onclick = function () {
