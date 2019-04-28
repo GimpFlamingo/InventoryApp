@@ -25,7 +25,6 @@ function createWindow() {
 
     mainWindow.maximize()
 
-
     // and load the index.html of the app.
     mainWindow.loadFile('index.html')
     // Build menu from template
@@ -208,7 +207,7 @@ function findOrderWindow() {
     })
     addWindow.maximize()
 
-    addWindow.loadFile('editWindows/editVendWindow.html')
+    addWindow.loadFile('viewWindows/findOrderWindow.html')
 
     addWindow.once('ready-to-show', () => {
         addWindow.show()
@@ -219,6 +218,31 @@ function findOrderWindow() {
         addWindow = null
     })
 }
+
+function newPoWindow() {
+    addWindow = new BrowserWindow({
+        width: 900,
+        height: 1100,
+        title: 'Edit Inventory Item',
+        webPreferences: {
+            nodeIntegration: true
+        },  
+        show: false
+    })
+    addWindow.maximize()
+
+    addWindow.loadFile('generateWindows/newPoWindow.html')
+
+    addWindow.once('ready-to-show', () => {
+        addWindow.show()
+    })
+
+    addWindow.on('closed', function () {
+
+        addWindow = null
+    })
+}
+
 
 
 // This method will be called when Electron has finished
@@ -327,7 +351,10 @@ const mainMenuTemplate = [
         label: 'Generate',
         submenu: [
             {
-                label: "New Purchase Order"
+                label: "New Purchase Order",
+                click() {
+                    newPoWindow()
+                }
             },
             {
                 label: "Sales Report",
