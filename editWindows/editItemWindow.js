@@ -6,7 +6,7 @@ window.onload = function () {
     // The Part ID will hold priority over the part name
     const searchButton = document.getElementById('search-part')
     const editItemButton = document.getElementById('edit-part')
-    const savePart = document.getElementById('save-part')
+    const save = document.getElementById('save-part')
     const cancel = document.getElementById('cancel')
 
     const client = new Client(connectionString)
@@ -111,7 +111,7 @@ window.onload = function () {
     }
 
     // Saves the user's changes to the database
-    savePart.onclick = function () {
+    save.onclick = function () {
         // Get the user's input. If the user doesn't change the field make sure to leave the current values in there
         var newVend = document.getElementById('new-vend-id')
         var newPrice = document.getElementById('new-price')
@@ -141,6 +141,7 @@ window.onload = function () {
             // On error use an alert to let the user know that they need to enter a valid item
             if (err === null) {
                 window.alert('Your changes have been saved!')
+                document.location.reload()
             } else {
                 window.alert('There was an error updating the part.')
             }

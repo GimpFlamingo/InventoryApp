@@ -152,7 +152,7 @@ function editCustomerWindow() {
     addWindow = new BrowserWindow({
         width: 900,
         height: 1100,
-        title: 'Edit Inventory Item',
+        title: 'Edit Customer',
         webPreferences: {
             nodeIntegration: true
         },  
@@ -161,6 +161,30 @@ function editCustomerWindow() {
     addWindow.maximize()
 
     addWindow.loadFile('editWindows/editCustomerWindow.html')
+
+    addWindow.once('ready-to-show', () => {
+        addWindow.show()
+    })
+
+    addWindow.on('closed', function () {
+
+        addWindow = null
+    })
+}
+
+function editVendorWindow() {
+    addWindow = new BrowserWindow({
+        width: 900,
+        height: 1100,
+        title: 'Edit Inventory Item',
+        webPreferences: {
+            nodeIntegration: true
+        },  
+        show: false
+    })
+    addWindow.maximize()
+
+    addWindow.loadFile('editWindows/editVendWindow.html')
 
     addWindow.once('ready-to-show', () => {
         addWindow.show()
@@ -242,6 +266,9 @@ const mainMenuTemplate = [
             },
             {
                 label: 'Edit Vendor',
+                click() {
+                    editVendorWindow()
+                }
             },
             {
                 label: 'Edit Customer',
