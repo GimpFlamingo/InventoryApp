@@ -233,7 +233,7 @@ function newSoWindow() {
     })
     addWindow.maximize()
 
-    addWindow.loadFile('generateWindows/newSoWindow.html')
+    addWindow.loadFile('fileWindows/newSoWindow.html')
 
     addWindow.once('ready-to-show', () => {
         addWindow.show()
