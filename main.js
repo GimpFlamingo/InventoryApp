@@ -4,14 +4,11 @@
  * access sale history; access spread sheet of items; and manage contact information of sellers
  * and buyers.
  */
-// Modules to control application life and create native browser window
 const { app, BrowserWindow, Menu } = require('electron')
 
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 let addWindow
-
+// Creates the main window of the app
 function createWindow() {
     // Create the browser window.
     mainWindow = new BrowserWindow({
@@ -25,7 +22,6 @@ function createWindow() {
 
     mainWindow.maximize()
 
-    // and load the index.html of the app.
     mainWindow.loadFile('index.html')
     // Build menu from template
     const mainMenu = Menu.buildFromTemplate(mainMenuTemplate)
@@ -98,6 +94,7 @@ function newVendWindow() {
     })
 }
 
+// Add a new customer to the databse
 function newCustomerWindow() {
     // Create the browser window.
     addWindow = new BrowserWindow({
@@ -123,6 +120,7 @@ function newCustomerWindow() {
     })
 }
 
+// Edit an item's information in the databases
 function editItemWindow() {
     addWindow = new BrowserWindow({
         width: 900,
@@ -147,6 +145,7 @@ function editItemWindow() {
     })
 }
 
+// Edit a customer's information in the database
 function editCustomerWindow() {
     addWindow = new BrowserWindow({
         width: 900,
@@ -171,6 +170,7 @@ function editCustomerWindow() {
     })
 }
 
+// Edit a vendor's information in the database
 function editVendorWindow() {
     addWindow = new BrowserWindow({
         width: 900,
@@ -195,6 +195,7 @@ function editVendorWindow() {
     })
 }
 
+// Find a processed order
 function findOrderWindow() {
     addWindow = new BrowserWindow({
         width: 900,
@@ -219,7 +220,8 @@ function findOrderWindow() {
     })
 }
 
-function newPoWindow() {
+// Create a new sales order
+function newSoWindow() {
     addWindow = new BrowserWindow({
         width: 900,
         height: 1100,
@@ -231,7 +233,7 @@ function newPoWindow() {
     })
     addWindow.maximize()
 
-    addWindow.loadFile('generateWindows/newPoWindow.html')
+    addWindow.loadFile('generateWindows/newSoWindow.html')
 
     addWindow.once('ready-to-show', () => {
         addWindow.show()
@@ -243,11 +245,6 @@ function newPoWindow() {
     })
 }
 
-
-
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
 app.on('ready', createWindow)
 
 // Quit when all windows are closed.
@@ -262,9 +259,6 @@ app.on('activate', function () {
     // dock icon is clicked and there are no other windows open.
     if (mainWindow === null) createWindow()
 })
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
 
 // Create menu template
 const mainMenuTemplate = [
@@ -291,6 +285,9 @@ const mainMenuTemplate = [
             },
             {
                 label: 'New Sales Order',
+                click() {
+                    newSoWindow()
+                }
             },
             {
                 label: 'Settings'
@@ -350,12 +347,6 @@ const mainMenuTemplate = [
     {
         label: 'Generate',
         submenu: [
-            {
-                label: "New Purchase Order",
-                click() {
-                    newPoWindow()
-                }
-            },
             {
                 label: "Sales Report",
                 submenu: [
