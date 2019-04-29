@@ -13,7 +13,14 @@ window.onload = function () {
     const addPart = document.getElementById("add-part")
     var custId
     var addedParts = []
-    var totalCost = 0
+    var totalCost = 0.00
+    var temp = ''
+
+    function addToList (itemPrice) {
+        
+        totalCost += itemPrice
+        temp += addedParts + '<br>'
+    }
 
     createButton.onclick = () => {
         custId = document.getElementById("cust-id")
@@ -42,7 +49,7 @@ window.onload = function () {
                 window.alert("This part is not in inventory")
             } else {
                 addedParts[addedParts.length] = addPart.value
-                totalCost += res.rows[0].price
+                addToList(res.rows[0].item_price)
             }
         })
     }
