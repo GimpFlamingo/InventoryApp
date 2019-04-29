@@ -9,13 +9,13 @@ window.onload = function () {
 
     const modal = document.getElementById("id-finder")
     const partListSection = document.getElementById("part-adder")
-    const partList = document.getElementById("part-list")
+    const partList = document.querySelector("#part-list")
     const createButton = document.getElementById("create-order")
     const addPart = document.getElementById("add-part")
     const costDisplay = document.getElementById("total-cost")
     var custId
     var addedParts = []
-    var totalCost = 0.00
+    var totalCost = "0"
     var temp = ''
 
     function addToList(itemPrice) {
@@ -23,12 +23,11 @@ window.onload = function () {
         totalCost += itemPrice
         for (var i = 0; i < addedParts.length; i++) {
             temp += '<li class="list-group-item>' + addedParts[i].id + '</li>'
-            console.log(addedParts[i].price)
-            totalCost += addedParts[i].price
+            totalCost = Number(totalCost) +  Number(addedParts[i].price)
         }
+        console.log(temp)
         partList.innerHTML = temp
-        // Displaying NaN
-        costDisplay.innerHTML = '$' + totalCost
+        costDisplay.innerHTML = '$' + totalCost.toFixed(2)
     }
 
     createButton.onclick = () => {
