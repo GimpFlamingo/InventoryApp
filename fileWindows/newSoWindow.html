@@ -13,6 +13,12 @@
         #part-adder {
             display: none;
         }
+
+        #total-cost {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+        }
     </style>
 </head>
 
@@ -37,7 +43,7 @@
             </div>
         </div>
     </div>
-    <div id="part-adder m-1">
+    <div id="part-adder" class="m-1">
         <div class="container-fluid">
             <div class="row justify-content-md-center">
                 <div class="col-9">
@@ -62,10 +68,13 @@
                 <div class="col-3">
                     <!--The entered parts display here-->
                     <h5>Parts Added</h5>
-                    <ul class="part-list"></ul>
+                    <ul id="part-list" class="list-group list-group-flush"></ul>
                 </div>
             </div>
             <!--Display total cost here-->
+            <div>
+                <div id="total-cost"></div>
+            </div>
         </div>
     </div>
 
