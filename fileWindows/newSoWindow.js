@@ -9,25 +9,25 @@ window.onload = function () {
 
     const modal = document.getElementById("id-finder")
     const partListSection = document.getElementById("part-adder")
-    const partList = document.querySelector("#part-list")
+    const partList = document.getElementById("part-list")
     const createButton = document.getElementById("create-order")
     const addPart = document.getElementById("add-part")
     const costDisplay = document.getElementById("total-cost")
     var custId
     var addedParts = []
-    var totalCost = "0"
+    var totalCost = 0
     var temp = ''
+    var counter = 0
 
-    function addToList(itemPrice) {
-
-        totalCost += itemPrice
-        for (var i = 0; i < addedParts.length; i++) {
-            temp += '<li class="list-group-item>' + addedParts[i].id + '</li>'
-            totalCost = Number(totalCost) +  Number(addedParts[i].price)
-        }
-        console.log(temp)
+    function addToList() {        
+        var enteredNum = document.getElementById('part-count') 
+        // Only working every other click
+        temp += '<li class="list-group-item>' + addedParts[0].id + '</li>'
+        totalCost = Number(totalCost) + Number(addedParts[0].price) * Number(enteredNum.value)
         partList.innerHTML = temp
         costDisplay.innerHTML = '$' + totalCost.toFixed(2)
+        counter++
+        console.log('Count: ' + counter)
     }
 
     createButton.onclick = () => {
@@ -49,16 +49,15 @@ window.onload = function () {
         var addPart = document.getElementById("part-id")
 
         client.query('SELECT item_price FROM public.inventory WHERE item_id=\'' + addPart.value + '\';', (err, res) => {
-            console.log(err, res)
             if (err !== null) {
                 console.log(err)
                 window.alert("Error adding part")
             } else if (res.rows[0].length === 0) {
                 window.alert("This part is not in inventory")
             } else {
-                addedParts.push({ 'id': addPart.value, price: Number(res.rows[0].item_price)})
-                console.log(addedParts)
-                addToList(res.rows[0].item_price)
+                console.log('From databse: ' + res.rows[0].item_price)
+                addedParts.push({ 'id': addPart.value, price: res.rows[0].item_price })
+                addToList()
             }
         })
     }

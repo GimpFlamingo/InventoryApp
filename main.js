@@ -285,6 +285,7 @@ const mainMenuTemplate = [
             },
             {
                 label: 'New Sales Order',
+                accelerator: process.platform === 'darwin' ? 'Command+Shift+S' : 'Ctrl+Shift+S',
                 click() {
                     newSoWindow()
                 }
