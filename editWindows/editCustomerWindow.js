@@ -1,5 +1,6 @@
 const { Client } = require('pg')
 const connectionString = 'postgresql://postgres:ridgeback@localhost:5432/inventoryapp'
+const client = new Client(connectionString)
 
 window.onload = function () {
     // User only has to enter one of the following variables to search the database
@@ -9,7 +10,6 @@ window.onload = function () {
     const save = document.getElementById('save-cust')
     const cancel = document.getElementById('cancel')
 
-    const client = new Client(connectionString)
 
     client.connect()
 
@@ -212,8 +212,8 @@ window.onload = function () {
     cancel.onclick = function () {
         document.location.reload()
     }
+}
 
-    window.onbeforeunload = function () {
-        client.end()
-    }
+window.onbeforeunload = function () {
+    client.end()
 }

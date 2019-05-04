@@ -1,9 +1,10 @@
 const { Client } = require('pg')
 const connectionString = 'postgresql://postgres:ridgeback@localhost:5432/inventoryapp'
+const client = new Client(connectionString)
+
 window.onload = function () {
     const addButton = document.getElementById('add-part')
 
-    const client = new Client(connectionString)
 
     client.connect()
 
@@ -29,9 +30,11 @@ window.onload = function () {
             })            
         }
     }
-    window.onbeforeunload = function () {
-        client.end()
-    }
+    
+}
+
+window.onbeforeunload = function () {
+    client.end()
 }
 
 
