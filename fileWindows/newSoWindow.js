@@ -13,21 +13,8 @@ window.onload = function () {
     const addPart = document.getElementById("add-part")
     const costDisplay = document.getElementById("total-cost")
     var custId
-    var addedParts = []
     var totalCost = 0
     var temp = ''
-    var counter = 0
-
-    function addToList() {        
-        var enteredNum = document.getElementById('part-count') 
-        // Only working every other click
-        temp += '<li class="list-group-item>' + addedParts[0].id + '</li>'
-        totalCost = Number(totalCost) + Number(addedParts[0].price) * Number(enteredNum.value)
-        partList.innerHTML = temp
-        costDisplay.innerHTML = '$' + totalCost.toFixed(2)
-        counter++
-        console.log('Count: ' + counter)
-    }
 
     createButton.onclick = () => {
         custId = document.getElementById("cust-id")
@@ -45,6 +32,7 @@ window.onload = function () {
     }
 
     addPart.onclick = () => {
+        var enteredNum = document.getElementById('part-count')
         var addPart = document.getElementById("part-id")
 
         client.query('SELECT item_price FROM public.inventory WHERE item_id=\'' + addPart.value + '\';', (err, res) => {
@@ -54,9 +42,12 @@ window.onload = function () {
             } else if (res.rows[0].length === 0) {
                 window.alert("This part is not in inventory")
             } else {
-                console.log('From databse: ' + res.rows[0].item_price)
-                addedParts.push({ 'id': addPart.value, price: res.rows[0].item_price })
-                addToList()
+                console.log('From databse: ' + addPart.value)
+                // Only working every other click
+                temp += '<li class="list-group-item">' + addPart.value + '</li>'
+                totalCost = Number(totalCost) + Number(res.rows[0].item_price) * Number(enteredNum.value)
+                partList.innerHTML = temp
+                costDisplay.innerHTML = '$' + totalCost.toFixed(2)
             }
         })
     }
