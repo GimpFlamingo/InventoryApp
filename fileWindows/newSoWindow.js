@@ -35,22 +35,26 @@ window.onload = function () {
         var enteredNum = document.getElementById('part-count')
         var addPart = document.getElementById("part-id")
 
+        // Add way to check what parts need to be ordered in the inventory based off what is currently in stock
         client.query('SELECT item_price FROM public.inventory WHERE item_id=\'' + addPart.value + '\';', (err, res) => {
             if (err !== null) {
                 console.log(err)
                 window.alert("Error adding part")
-            } else if (res.rows[0].length === 0) {
+            } else if (res.rows[0] == null) {
                 window.alert("This part is not in inventory")
             } else {
-                console.log('From databse: ' + addPart.value)
-                // Only working every other click
+                // Add part to list
                 temp += '<li class="list-group-item">' + addPart.value + '</li>'
+                // Increase total cost to make 
                 totalCost = Number(totalCost) + Number(res.rows[0].item_price) * Number(enteredNum.value)
+                // Display part to list
                 partList.innerHTML = temp
                 costDisplay.innerHTML = '$' + totalCost.toFixed(2)
             }
         })
     }
+
+    // Add section that display in review area that shows the user what parts need to be ordered to complete the order as created
 }
 
 window.onbeforeunload = () => {
