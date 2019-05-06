@@ -378,7 +378,7 @@ if (process.env.NODE_ENV !== 'production') {
         submenu: [
             {
                 label: 'Toggle Devtools',
-                accelerator: process.platform == 'darwin' ? 'Command+I' : 'Ctrl+I',
+                accelerator: process.platform == 'darwin' ? 'Command+I' : 'F12',
                 click(item, focusWindow) {
                     focusWindow.webContents.openDevTools()
                 }
