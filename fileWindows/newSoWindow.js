@@ -6,12 +6,16 @@ window.onload = function () {
 
     client.connect()
 
-    const modal = document.getElementById("id-finder")
-    const partListSection = document.getElementById("part-adder")
-    const partList = document.getElementById("part-list")
-    const createButton = document.getElementById("create-order")
-    const addPart = document.getElementById("add-part")
-    const totalCostDisplay = document.getElementById("total-cost")
+    // Buttons
+    const createButton = document.getElementById('create-order')
+    const addPartButton = document.getElementById('add-part')
+    const finishAddingButton = document.getElementById('finish-adding')
+    // Buttons
+
+    const modal = document.getElementById('id-finder')
+    const partListSection = document.getElementById('part-adder')
+    const partList = document.getElementById('part-list')
+    const totalCostDisplay = document.getElementById('total-cost')
     const totalItemDisplay = document.getElementById('total-items')
     const header = document.getElementById('header')
     const custHead = document.getElementById('customer-header')
@@ -20,6 +24,7 @@ window.onload = function () {
     var totalItems = 0
     var temp = ''
 
+    // Button to create sales order
     createButton.onclick = () => {
         custId = document.getElementById("cust-id")
 
@@ -37,7 +42,8 @@ window.onload = function () {
         })
     }
 
-    addPart.onclick = () => {
+    // Button to add part to the sales order
+    addPartButton.onclick = () => {
         var enteredNum = document.getElementById('part-count')
         var addPart = document.getElementById("part-id")
 
@@ -58,8 +64,15 @@ window.onload = function () {
                 partList.innerHTML = temp
                 totalCostDisplay.innerHTML = '$' + totalCost.toFixed(2)
                 totalItemDisplay.innerHTML = totalItems
+                addPart.value = ''
+                enteredNum.value = ''
             }
         })
+    }
+
+    // Button to finish adding parts to the sales order
+    finishAddingButton.onclick = () => {
+
     }
 
     // Add section that display in review area that shows the user what parts need to be ordered to complete the order as created

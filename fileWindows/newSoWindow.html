@@ -25,6 +25,10 @@
             right: 0;
             bottom: 0;
         }
+
+        #order-review {
+            display: none;
+        }
     </style>
 </head>
 
@@ -57,7 +61,7 @@
             <div class="row justify-content-md-center">
                 <div class="col-9">
                     <!--The user enters the part ID here-->
-                    <div id="part-finder p-1">
+                    <div id="part-finder p-2">
                         <h5>Enter Part ID Here</h5>
                         <form>
                             <div class="form-group">
@@ -77,6 +81,9 @@
                 </div>
                 <div class="col-3">
                     <!--The entered parts display here-->
+                    <div class="p-1">
+                        <button type="button" class="btn btn-primary btn-lg btn-block" id="finish-adding">Submit</button>
+                    </div>
                     <h5>Parts Added</h5>
                     <div class="container-fluid">
                         <div class="scrollable">
@@ -102,22 +109,23 @@
                                         <tr>
                                             <th scope="col">Item ID</th>
                                             <th scope="col">Item Amount</th>
-                                        </tr>                                    
+                                        </tr>
                                     </thead>
                                     <tbody id="part-list">
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                    </div>                    
+                    </div>
                 </div>
             </div>
-            
         </div>
     </div>
     <!--Ask Macie about what should come up after parts are picked-->
-    <!--Add review order section-->
-    <!--Once review order is completed add order to the databse and update the parts in the inventory-->
+    <div id="order-review">
+
+        <!--Once review order is completed add order to the databse and update the parts in the inventory-->
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
