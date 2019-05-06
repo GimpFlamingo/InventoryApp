@@ -79,14 +79,40 @@
                     <!--The entered parts display here-->
                     <h5>Parts Added</h5>
                     <div class="container-fluid">
-                        <ul class="list-group list-group-flush" id="part-list"></ul>
-                    </div>
+                        <div class="scrollable">
+                            <div class="row">
+                                <!--Table that just shows the current number of parts and total cost-->
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Total Items</th>
+                                            <th scope="col">Total Cost</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td scope="row" id="total-items">0</th>
+                                            <td id="total-cost">$0.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <!--Table for items IDs and Item amounts-->
+                                <table class="table table-stripped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Item ID</th>
+                                            <th scope="col">Item Amount</th>
+                                        </tr>                                    
+                                    </thead>
+                                    <tbody id="part-list">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>                    
                 </div>
             </div>
-            <!--Display total cost here-->
-            <div>
-                <div id="totals" class="p-2"></div>
-            </div>
+            
         </div>
     </div>
     <!--Ask Macie about what should come up after parts are picked-->

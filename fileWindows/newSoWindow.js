@@ -11,7 +11,8 @@ window.onload = function () {
     const partList = document.getElementById("part-list")
     const createButton = document.getElementById("create-order")
     const addPart = document.getElementById("add-part")
-    const totalsDisplay = document.getElementById("totals")
+    const totalCostDisplay = document.getElementById("total-cost")
+    const totalItemDisplay = document.getElementById('total-items')
     const header = document.getElementById('header')
     const custHead = document.getElementById('customer-header')
     var custId
@@ -49,13 +50,14 @@ window.onload = function () {
                 window.alert("This part is not in inventory")
             } else {
                 // Add part to list
-                temp += '<li class="list-group-item row"><div class="col-xs-9">' + addPart.value + '</div><div class="col-xs-3">' + enteredNum.value + '</div></li>'
+                temp += '<tr><th scope="row">' + addPart.value + '</th><td>' + enteredNum.value + '</td></tr>'
                 // Increase total cost and total items
                 totalCost = Number(totalCost) + Number(res.rows[0].item_price) * Number(enteredNum.value)
                 totalItems += Number(enteredNum.value)
                 // Display part to list
                 partList.innerHTML = temp
-                totalsDisplay.innerHTML = 'Total Items = ' + totalItems + 'Total Cost: $' + totalCost.toFixed(2)
+                totalCostDisplay.innerHTML = '$' + totalCost.toFixed(2)
+                totalItemDisplay.innerHTML = totalItems
             }
         })
     }
