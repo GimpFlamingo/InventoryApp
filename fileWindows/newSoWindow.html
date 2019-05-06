@@ -14,7 +14,12 @@
             display: none;
         }
 
-        #total-cost {
+        #header {
+            display: none;
+            padding: 5px;
+        }
+
+        #totals {
             size: 20px;
             position: fixed;
             right: 0;
@@ -44,8 +49,11 @@
             </div>
         </div>
     </div>
-    <div id="part-adder" class="m-1">
-        <div class="container-fluid">
+    <div class="container-fluid">
+        <div id='header'>
+            <h4 id="customer-header"></h4>
+        </div>
+        <div id="part-adder" class="m-1">
             <div class="row justify-content-md-center">
                 <div class="col-9">
                     <!--The user enters the part ID here-->
@@ -63,19 +71,21 @@
                             </div>
                             <button type="button" class="btn btn-primary btn-lg btn-block" id="add-part">Add
                                 Part</button>
-                                <!--Add button to complete part addition and move to next section-->
+                            <!--Add button to complete part addition and move to next section-->
                         </form>
                     </div>
                 </div>
                 <div class="col-3">
                     <!--The entered parts display here-->
                     <h5>Parts Added</h5>
-                    <ul class="list-group list-group-flush" id="part-list"></ul>                    
+                    <div class="container-fluid">
+                        <ul class="list-group list-group-flush" id="part-list"></ul>
+                    </div>
                 </div>
             </div>
             <!--Display total cost here-->
             <div>
-                <div id="total-cost" class="p-2"></div>
+                <div id="totals" class="p-2"></div>
             </div>
         </div>
     </div>

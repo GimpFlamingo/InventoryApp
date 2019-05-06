@@ -11,22 +11,27 @@ window.onload = function () {
     const partList = document.getElementById("part-list")
     const createButton = document.getElementById("create-order")
     const addPart = document.getElementById("add-part")
-    const costDisplay = document.getElementById("total-cost")
+    const totalsDisplay = document.getElementById("totals")
+    const header = document.getElementById('header')
+    const custHead = document.getElementById('customer-header')
     var custId
     var totalCost = 0
+    var totalItems = 0
     var temp = ''
 
     createButton.onclick = () => {
         custId = document.getElementById("cust-id")
 
-        client.query('SELECT cust_id FROM public.customers WHERE cust_id=\'' + custId.value + '\';', (err, res) => {
+        client.query('SELECT cust_id, cust_name FROM public.customers WHERE cust_id=\'' + custId.value + '\';', (err, res) => {
             console.log(err, res)
-            if (res.rows[0].length === 0) {
+            if (res.rows[0] == null) {
                 console.log(err)
                 window.alert("This customer does not exist.")
             } else {
                 modal.style.display = 'none'
                 partListSection.style.display = 'block'
+                header.style.display = 'block'
+                custHead.innerHTML = '<u>Shipping for ' + res.rows[0].cust_name + ' (' + res.rows[0].cust_id + ')</u>'
             }
         })
     }
@@ -44,12 +49,13 @@ window.onload = function () {
                 window.alert("This part is not in inventory")
             } else {
                 // Add part to list
-                temp += '<li class="list-group-item">' + addPart.value + '</li>'
-                // Increase total cost to make 
+                temp += '<li class="list-group-item row"><div class="col-xs-9">' + addPart.value + '</div><div class="col-xs-3">' + enteredNum.value + '</div></li>'
+                // Increase total cost and total items
                 totalCost = Number(totalCost) + Number(res.rows[0].item_price) * Number(enteredNum.value)
+                totalItems += Number(enteredNum.value)
                 // Display part to list
                 partList.innerHTML = temp
-                costDisplay.innerHTML = '$' + totalCost.toFixed(2)
+                totalsDisplay.innerHTML = 'Total Items = ' + totalItems + 'Total Cost: $' + totalCost.toFixed(2)
             }
         })
     }
