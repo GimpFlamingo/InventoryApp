@@ -17,6 +17,7 @@
     "electron": "^4.1.4"
   },
   "dependencies": {
+    "jquery": "^3.4.1",
     "pg": "^7.10.0",
     "pg-promise": "^8.6.5"
   }

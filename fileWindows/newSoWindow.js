@@ -10,23 +10,26 @@ window.onload = function () {
     const createButton = document.getElementById('create-order')
     const addPartButton = document.getElementById('add-part')
     const finishAddingButton = document.getElementById('finish-adding')
+    var deleteItemButton = document.getElementById()
     // Buttons
-
 
     // Displays
     const modal = document.getElementById('id-finder')
     const partListSection = document.getElementById('part-adder')
     const shipScreenSection = document.getElementById('ship-screen')
     // Displays
+
     const partList = document.getElementById('part-list')
     const totalCostDisplay = document.getElementById('total-cost')
     const totalItemDisplay = document.getElementById('total-items')
     const header = document.getElementById('header')
     const custHead = document.getElementById('customer-header')
+    
     var custId
     var totalCost = 0
     var totalItems = 0
     var temp = ''
+    var items = []  
 
     // Button to create sales order
     createButton.onclick = () => {
@@ -46,6 +49,7 @@ window.onload = function () {
         })
     }
 
+
     // Button to add part to the sales order
     addPartButton.onclick = () => {
         var enteredNum = document.getElementById('part-count')
@@ -60,7 +64,9 @@ window.onload = function () {
                 window.alert("This part is not in inventory")
             } else {
                 // Add part to list
-                temp += '<tr><th scope="row">' + addPart.value + '</th><td>' + enteredNum.value + '</td></tr>'
+                temp += '<tr><th scope="row">' + addPart.value + '</th><td>' + enteredNum.value + '</td><td><button type="button" value="Delete" class="delete-row"><span>&times;</span></button></td></tr>'
+                items.push({'itemId': addPart.value, 'amount': Number(enteredNum.value) })
+                console.log(items)
                 // Increase total cost and total items
                 totalCost = Number(totalCost) + Number(res.rows[0].item_price) * Number(enteredNum.value)
                 totalItems += Number(enteredNum.value)
@@ -73,6 +79,8 @@ window.onload = function () {
             }
         })
     }
+
+
 
     // Button to finish adding parts to the sales order
     finishAddingButton.onclick = () => {

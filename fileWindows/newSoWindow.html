@@ -9,6 +9,12 @@
     <script src="newSoWindow.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script>
+        function deleteRow(btn) {
+            var row = btn.parentNode.parentNode;
+            row.parentNode.removeChild(row); 
+        }
+    </script>
     <style>
         #part-adder {
             display: none;
@@ -97,7 +103,7 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">Total Items</th>
-                                            <th scope="col">Total Cost</th>
+                                            <th scope="col">Total Cost</th>                                            
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -113,6 +119,7 @@
                                         <tr>
                                             <th scope="col">Item ID</th>
                                             <th scope="col">Item Amount</th>
+                                            <th scope="col">Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody id="part-list">
@@ -135,7 +142,8 @@
 
         <!--Once review order is completed add order to the databse and update the parts in the inventory-->
     </div>
-
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
