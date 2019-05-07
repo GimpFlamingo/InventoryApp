@@ -10,7 +10,7 @@ window.onload = function () {
     const createButton = document.getElementById('create-order')
     const addPartButton = document.getElementById('add-part')
     const finishAddingButton = document.getElementById('finish-adding')
-    var deleteItemButton = document.getElementById()
+    var deleteItemButton = document.getElementsByClassName('delete')
     // Buttons
 
     // Displays
@@ -24,12 +24,18 @@ window.onload = function () {
     const totalItemDisplay = document.getElementById('total-items')
     const header = document.getElementById('header')
     const custHead = document.getElementById('customer-header')
-    
+
     var custId
     var totalCost = 0
     var totalItems = 0
     var temp = ''
-    var items = []  
+    var items = []
+
+    function deleteRow(btn) {
+        console.log(btn)
+        var row = btn.parentNode.parentNode
+        row.parentNode.removeChild(row)
+    }
 
     // Button to create sales order
     createButton.onclick = () => {
@@ -49,6 +55,12 @@ window.onload = function () {
         })
     }
 
+    deleteItemButton.onclick = () => {
+        console.log(btn)
+        var row = btn.parentNode.parentNode
+        row.parentNode.removeChild(row)
+    }
+
 
     // Button to add part to the sales order
     addPartButton.onclick = () => {
@@ -64,8 +76,8 @@ window.onload = function () {
                 window.alert("This part is not in inventory")
             } else {
                 // Add part to list
-                temp += '<tr><th scope="row">' + addPart.value + '</th><td>' + enteredNum.value + '</td><td><button type="button" value="Delete" class="delete-row"><span>&times;</span></button></td></tr>'
-                items.push({'itemId': addPart.value, 'amount': Number(enteredNum.value) })
+                temp += '<tr><th scope="row">' + addPart.value + '</th><td>' + enteredNum.value + '</td><td><button type="button" value="Delete" class="delete"><span>&times;</span></button></td></tr>'
+                items.push({ 'itemId': addPart.value, 'amount': Number(enteredNum.value) })
                 console.log(items)
                 // Increase total cost and total items
                 totalCost = Number(totalCost) + Number(res.rows[0].item_price) * Number(enteredNum.value)
@@ -79,8 +91,6 @@ window.onload = function () {
             }
         })
     }
-
-
 
     // Button to finish adding parts to the sales order
     finishAddingButton.onclick = () => {
