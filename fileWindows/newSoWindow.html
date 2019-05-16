@@ -126,15 +126,72 @@
             </div>
 
         </div>
-        <div id="ship-screen">
+        <div class="col-12" id="ship-screen">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Purchase Order Number</span>
+                </div>
+                <input type="text" class="form-control" id="po-number" placeholder="Enter Purchase Order Number">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Ship VIA</span>
+                </div>
+                <input type="text" class="form-control" id="ship-via" placeholder="Enter Shipping Method">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Shipping Address</span>
+                </div>
+                <input type="text" class="form-control" id="ship-to-address" placeholder="Enter Destination Address">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Shipping City</span>
+                </div>
+                <input type="text" class="form-control" id="ship-to-city" placeholder="Enter City">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Shipping Address State</span>
+                </div>
+                <input type="text" class="form-control" id="ship-state" placeholder="State">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Shipping Address ZIP</span>
+                </div>
+                <input type="text" class="form-control" id="ship-zip" placeholder="Enter ZIP code">
+            </div>
 
+            <button type="button" class="btn btn-primary btn-lg btn-block" id="finish-shipping">Finish Shipping</button>
         </div>
         <!--Ask Macie about what should come up after parts are picked-->
         <div id="order-review">
-
             <!--Once review order is completed add order to the databse and update the parts in the inventory-->
+            <div class="container-fluid col-10">
+                <table class="table table-stripped" id="item-review-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Item ID</th>
+                            <th scope="col">Item Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody id="part-review"></tbody>
+                </table>
+                <table class="table justify-content-center">
+                    <tbody id="shipping-review"></tbody>
+                </table>
+                <table class="table justify-content-center">
+                    <thead>
+                        <th scope="col">Total Items</th>
+                        <th scope="col">Total Cost</th>
+                    </thead>
+                    <tbody id="total-review"></tbody>
+                </table>
+                <button type="button" class="btn btn-primary btn-lg btn-block" id="finish-review">Finish</button>
+            </div>
         </div>
-
     </div>
 
 
